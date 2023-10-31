@@ -15,6 +15,12 @@
 #          întoarce starea rezultată în urma aplicării tranziției. Validarea tranzițiilor se face în una sau mai
 #          multe  funcții booleană, cu aceeași parametri. 
 # (0.4) 4. Implementați strategia IDDFS.
+# (0.5) 5. Implementați strategia Greedy și testați cel puțin trei euristici: distanța Manhattann, distanța Hamming, 
+#          plus cel puțin încă o euristică diferită.
+# (0.5) 6. Implementați un program care rulează toate cele 4 strategii (IDDFS și Greedy cu cele trei euristici) pentru 
+#          cele trei instanțe și afișează soluția (dacă e găsită), lungimea sa (numărul de mutări) și durata execuției 
+#          pentru fiecare din cele 4 strategii.
+
 
 # Folosiți pentru testarea implementărilor instanțele: 
 # [8, 6, 7, 2, 5, 4, 0, 3, 1]
@@ -138,6 +144,8 @@ def dls(state, depth, state_dict=None):
 
     return None
 
+# -------- 5 -------- #
+
 def hamming_distance(state):
     goal_state = [1, 2, 3, 4, 5, 6, 7, 8]
     state_as_list = state_to_list(state)
@@ -197,7 +205,7 @@ def greedy_search(initial_state, heuristic):
             return state, steps
 
         for direction in ["up", "down", "left", "right"]:
-            new_state = move(state.copy(), direction)
+            new_state = move(state, direction)
             if new_state is not None:
                 new_state_as_list = state_to_list(new_state)
                 if tuple(new_state_as_list) not in state_dict:
@@ -208,6 +216,7 @@ def greedy_search(initial_state, heuristic):
 
     return None, steps
 
+# -------- 6 -------- #
 
 # -------- TESTS -------- #
 
